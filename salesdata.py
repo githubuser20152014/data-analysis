@@ -5,8 +5,6 @@ Created on Tue Jan 31 00:29:35 2023
 @author: akhil
 """
 
-print('Jai Shri Ganesh')
-
 
 # import pandas librar
 import pandas as pd
@@ -42,10 +40,6 @@ sales['Date'] = sales['Day'].astype(str) + '-' + sales['Month'] + '-' + sales['Y
 sales = sales.drop(['Day', 'Month', 'Year'], axis=1)
 
 # we split ClientKeywords into separate columns
-
-# client_age = sales['ClientKeywords'].split(',')
-
-
 sales['ClientAge'] = sales['ClientKeywords'].str.split(',', expand=True)[0].str.replace('[', '')
 sales['ClientType'] = sales['ClientKeywords'].str.split(',', expand=True)[1]
 sales['ClientDuration'] = sales['ClientKeywords'].str.split(',', expand=True)[2].str.replace(']', '')
@@ -59,7 +53,6 @@ print(sales.head())
 
 
 # now we have the dataframe ready to export to csv so we can do analysis in Tableau
-
 sales.to_csv('salesdata.csv', index=False)
 
 
